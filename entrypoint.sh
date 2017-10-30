@@ -6,6 +6,6 @@ if ! gsutil ls gs://$BACKUPS_GS_BUCKET > /dev/null; then
 fi
 
 echo "Setting crontab"
-echo "0 0 14 1/1 * ? * root sh /workdir/run.sh >> /workdir/crontab.log" > /etc/crontab
-sh /workdir/run.sh >> /backups/crontab.log
-tail -f /backups/crontab.log
+echo "0 0 21 1/1 * ? * root sh /workdir/run.sh >> /workdir/crontab.log" > /etc/crontab
+sh /workdir/run.sh >> /workdir/crontab.log
+tail -f /workdir/crontab.log

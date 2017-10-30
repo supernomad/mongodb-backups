@@ -7,5 +7,9 @@ TARGET_PATH=/workdir/$TARGET_FILENAME
 mongodump -h $MONGO_HOST -d $MONGO_DB -o $TARGET_PATH
 tar cfzv $TARGET_PATH.tar.gz $TARGET_PATH
 rm -rf $TARGET_PATH
-gc cp $TARGET_PATH.tar.gz gs://$BACKUPS_GS_BUCKET/$TARGET_FILENAME.tar.gz
+gsutil cp $TARGET_PATH.tar.gz gs://$BACKUPS_GS_BUCKET/$TARGET_FILENAME.tar.gz
+if [ ! $? -eq 0 ]; then
+    echo "Error copying file to Google Storage!!"
+    exit 1
+fi
 rm -f $TARGET_PATH.tar.gz

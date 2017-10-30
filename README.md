@@ -5,4 +5,4 @@ Configuration options:
 
 - `MONGO_HOST` service host
 - `MONGO_DB` db to dump
-- `/backups` target mountpoint for backups
+- `BACKUPS_GS_BUCKET` target Google Cloud storage bucket for backups
