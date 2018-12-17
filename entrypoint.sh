@@ -15,4 +15,5 @@ crontab cron
 rm cron
 sh /workdir/run.sh >> /workdir/crontab.log
 /etc/init.d/cron start
+service cron start
 tail -f /workdir/crontab.log

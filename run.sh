@@ -7,6 +7,7 @@ DATE_STR=`date +%y%m%d-%H%M`
 TARGET_FILENAME=mongo-$MONGO_DB-$DATE_STR
 TARGET_PATH=/workdir/$TARGET_FILENAME
 
+echo $DATE_STR > /workdir/backup.date
 mongodump -h $MONGO_HOST -d $MONGO_DB -o $TARGET_PATH
 tar cfzv $TARGET_PATH.tar.gz $TARGET_PATH
 rm -rf $TARGET_PATH
@@ -16,3 +17,4 @@ if [ ! $? -eq 0 ]; then
     exit 1
 fi
 rm -f $TARGET_PATH.tar.gz
+gsutil cp /workdir/backup.date gs://$BACKUPS_GS_BUCKET
